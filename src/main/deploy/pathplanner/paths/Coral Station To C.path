@@ -1,0 +1,66 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 1.5365802228009247,
+        "y": 0.6752589699074065
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 2.0496601944744466,
+        "y": 1.2357731270295058
+      },
+      "isLocked": false,
+      "linkedName": "Coral Station (Processor)"
+    },
+    {
+      "anchor": {
+        "x": 3.699773462626386,
+        "y": 2.9840354159460434
+      },
+      "prevControl": {
+        "x": 3.0512460121969287,
+        "y": 2.281302165873381
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "C"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [
+    {
+      "name": "RaiseL4",
+      "waypointRelativePos": 0.6833220796758904,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "RaiseL4"
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 4.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 59.99999999999999
+  },
+  "reversed": false,
+  "folder": "No Vision",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 55.0
+  },
+  "useDefaultConstraints": true
+}

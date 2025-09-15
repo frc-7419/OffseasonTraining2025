@@ -10,7 +10,6 @@ import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
-
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -20,8 +19,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.constants.Constants.ArmConstants;
 
 /**
- * The {@code ArmSubsystem} class controls the wrist subsystem of the robot.
- * It manages the motion
+ * The {@code ArmSubsystem} class controls the wrist subsystem of the robot. It manages the motion
  * and angle of the elevator using TalonFX motors with a fused CANCoder.
  */
 public class ArmSubsystem extends SubsystemBase {
@@ -35,7 +33,8 @@ public class ArmSubsystem extends SubsystemBase {
   private final CANcoder wristEncoder = new CANcoder(ArmConstants.kArmEncoderID);
   private final VelocityVoltage velocityRequest = new VelocityVoltage(0).withSlot(0);
 
-  private final MotionMagicExpoVoltage motionMagicRequest = new MotionMagicExpoVoltage(0).withSlot(0);
+  private final MotionMagicExpoVoltage motionMagicRequest =
+      new MotionMagicExpoVoltage(0).withSlot(0);
 
   private ControlMode controlMode = ControlMode.MANUAL;
 
@@ -49,9 +48,8 @@ public class ArmSubsystem extends SubsystemBase {
   /**
    * Sets the wrist power in manual mode.
    *
-   * @param power The power to set, ranging from -1 to 1. Positive values move the
-   *              elevator up, and
-   *              negative values move it down.
+   * @param power The power to set, ranging from -1 to 1. Positive values move the elevator up, and
+   *     negative values move it down.
    */
   public void setPower(double power) {
     if (controlMode == ControlMode.MOTIONMAGIC) {
@@ -68,8 +66,7 @@ public class ArmSubsystem extends SubsystemBase {
   }
 
   /**
-   * Returns a Command that drives the wrist to a specific angle and then ends,
-   * returning the
+   * Returns a Command that drives the wrist to a specific angle and then ends, returning the
    * control mode to MANUAL.
    *
    * @param angle The target angle

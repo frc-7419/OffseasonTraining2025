@@ -19,7 +19,8 @@ public class Constants {
   public static class ArmConstants {
     public static final int kArmMotorID = 0; // Arbitrary ID (change)
     public static final int kArmEncoderID = 0; // Arbitrary ID (change)
-    public static final AngularVelocity kMaxSpeed = RotationsPerSecond.of(1); // Arbitrary velocity (change)
+    public static final AngularVelocity kMaxSpeed =
+        RotationsPerSecond.of(1); // Arbitrary velocity (change)
     public static final Angle kAngleTolerance = Degrees.of(5); // Arbitrary angle (change)
     public static final Angle kMaxAngle = Degrees.of(90); // Arbitrary angle (change)
     public static final Angle kMinAngle = Degrees.of(90); // Arbitrary angle (change)
@@ -27,7 +28,8 @@ public class Constants {
 
     static {
       kArmTalonFXConfiguration.Feedback.FeedbackRemoteSensorID = kArmEncoderID;
-      kArmTalonFXConfiguration.Feedback.FeedbackSensorSource = FeedbackSensorSourceValue.FusedCANcoder;
+      kArmTalonFXConfiguration.Feedback.FeedbackSensorSource =
+          FeedbackSensorSourceValue.FusedCANcoder;
       kArmTalonFXConfiguration.Feedback.SensorToMechanismRatio = 1.0;
       kArmTalonFXConfiguration.Feedback.RotorToSensorRatio = 1; // Don't know yet
     }
@@ -35,7 +37,8 @@ public class Constants {
     public static final CANcoderConfiguration kArmCANCoderConfig = new CANcoderConfiguration();
 
     static {
-      kArmCANCoderConfig.MagnetSensor.SensorDirection = SensorDirectionValue.CounterClockwise_Positive;
+      kArmCANCoderConfig.MagnetSensor.SensorDirection =
+          SensorDirectionValue.CounterClockwise_Positive;
       kArmCANCoderConfig.MagnetSensor.withMagnetOffset(Rotations.of(0)); // Change offset
     }
 
@@ -52,16 +55,21 @@ public class Constants {
     }
 
     // https://v6.docs.ctr-electronics.com/en/latest/docs/api-reference/device-specific/talonfx/motion-magic.html#motion-magic-expo
-    public static final MotionMagicConfigs kMotionMagicConfig = kArmTalonFXConfiguration.MotionMagic;
+    public static final MotionMagicConfigs kMotionMagicConfig =
+        kArmTalonFXConfiguration.MotionMagic;
 
     static {
-      kMotionMagicConfig.MotionMagicCruiseVelocity = 0; // peak velocity of the profile; set to 0 to target the
+      kMotionMagicConfig.MotionMagicCruiseVelocity =
+          0; // peak velocity of the profile; set to 0 to target the
       // system’s max velocity
-      kMotionMagicConfig.MotionMagicExpo_kV = 0; // voltage required to maintain a given velocity, in V/rps
-      kMotionMagicConfig.MotionMagicExpo_kA = 0; // voltage required to maintain a given velocity, in V/rps
+      kMotionMagicConfig.MotionMagicExpo_kV =
+          0; // voltage required to maintain a given velocity, in V/rps
+      kMotionMagicConfig.MotionMagicExpo_kA =
+          0; // voltage required to maintain a given velocity, in V/rps
     }
 
-    public static final CurrentLimitsConfigs kCurrentLimitConfig = kArmTalonFXConfiguration.CurrentLimits;
+    public static final CurrentLimitsConfigs kCurrentLimitConfig =
+        kArmTalonFXConfiguration.CurrentLimits;
 
     static {
       kCurrentLimitConfig.StatorCurrentLimit = 80; // current limit in amps

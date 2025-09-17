@@ -134,4 +134,9 @@ public class ArmSubsystem extends SubsystemBase {
   private void switchControlMode(ControlMode mode) {
     this.controlMode = mode;
   }
+
+public void runMotor(double power) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'runMotor'");
+}
 }

@@ -23,11 +23,6 @@ import frc.robot.constants.Constants.ArmConstants;
  * and angle of the elevator using TalonFX motors with a fused CANCoder.
  */
 public class ArmSubsystem extends SubsystemBase {
-  private enum ControlMode {
-    MANUAL,
-    MOTIONMAGIC
-  }
-
   private final TalonFX wristMotor = new TalonFX(ArmConstants.kArmMotorID);
 
   private final CANcoder wristEncoder = new CANcoder(ArmConstants.kArmEncoderID);
@@ -35,8 +30,6 @@ public class ArmSubsystem extends SubsystemBase {
 
   private final MotionMagicExpoVoltage motionMagicRequest =
       new MotionMagicExpoVoltage(0).withSlot(0);
-
-  private ControlMode controlMode = ControlMode.MANUAL;
 
   /** Creates a new {@code ArmSubsystem} with a TalonFX and a CANcoder. */
   public ArmSubsystem() {
@@ -52,10 +45,6 @@ public class ArmSubsystem extends SubsystemBase {
    *     negative values move it down.
    */
   public void setPower(double power) {
-    if (controlMode == ControlMode.MOTIONMAGIC) {
-      return;
-    }
-
     power = Math.max(-1, Math.min(1, power));
 
     wristMotor.setControl(
@@ -63,17 +52,6 @@ public class ArmSubsystem extends SubsystemBase {
             .withVelocity(power * ArmConstants.kMaxSpeed.in(RotationsPerSecond))
             .withLimitForwardMotion(getPosition().gte(ArmConstants.kMaxAngle))
             .withLimitReverseMotion(getPosition().lte(ArmConstants.kMinAngle)));
-  }
-
-  /**
-   * Returns a Command that drives the wrist to a specific angle and then ends, returning the
-   * control mode to MANUAL.
-   *
-   * @param angle The target angle
-   * @return A command for scheduling.
-   */
-  public Command setAngle(Angle angle) {
-    return this.runEnd(() -> toAngle(angle), () -> switchControlMode(ControlMode.MANUAL));
   }
 
   /**
@@ -113,25 +91,5 @@ public class ArmSubsystem extends SubsystemBase {
         "Arm Velocity (RotationsPerSecond)", getVelocity().in(RotationsPerSecond));
     SmartDashboard.putNumber(
         "Arm Temperature (Celsius)", wristMotor.getDeviceTemp().getValue().in(Celsius));
-  }
-
-  /**
-   * Moves the wrist to a specified angle using Motion Magic.
-   *
-   * @param angle The desired angle (e.g., 0° is horizontal, 90° is vertical).
-   */
-  private void toAngle(Angle angle) {
-    controlMode = ControlMode.MOTIONMAGIC;
-
-    wristMotor.setControl(
-        motionMagicRequest
-            .withPosition(angle.in(Rotations))
-            .withLimitForwardMotion(getPosition().gte(ArmConstants.kMaxAngle))
-            .withLimitReverseMotion(getPosition().lte(ArmConstants.kMinAngle)));
-  }
-
-  /** Switches the current control mode. */
-  private void switchControlMode(ControlMode mode) {
-    this.controlMode = mode;
   }
 }
